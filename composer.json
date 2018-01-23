@@ -3,7 +3,9 @@
     "description": "Support and helpers for Laravel PHP based projects",
     "type": "library",
     "license": "MIT",
-    "require": {},
+    "require": {
+        "laravel/framework": "^5.5"
+    },
     "autoload": {
         "psr-4": {
             "Maxfactor\\Support\\": "src"
