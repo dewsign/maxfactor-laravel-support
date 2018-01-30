@@ -27,5 +27,6 @@ class MaxfactorServiceProvider extends ServiceProvider
     {
         $this->app->bind('maxfactor', Maxfactor::class);
         $this->app->bind('mx-countries', Countries::class);
+        $this->app->bind('mx-format', Format::class);
     }
 }

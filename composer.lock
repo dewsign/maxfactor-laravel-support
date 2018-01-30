@@ -4,8 +4,55 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "5103abe20fecc4477fbc92c16fa25df4",
+    "content-hash": "6435d82c5162f44d95863ea8ee35a565",
     "packages": [
+        {
+            "name": "dannyvankooten/vat.php",
+            "version": "1.1.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/dannyvankooten/vat.php.git",
+                "reference": "1d1d533a35517b78c685e7c1702bcf8958345a8d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/dannyvankooten/vat.php/zipball/1d1d533a35517b78c685e7c1702bcf8958345a8d",
+                "reference": "1d1d533a35517b78c685e7c1702bcf8958345a8d",
+                "shasum": ""
+            },
+            "require": {
+                "ext-soap": "*",
+                "php": ">=5.6",
+                "psr/simple-cache": "^1.0"
+            },
+            "provide": {
+                "psr/simple-cache-implementation": "1.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^5.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "DvK\\Vat\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Danny van Kooten",
+                    "email": "hi@dvk.co"
+                }
+            ],
+            "description": "PHP library for dealing with VAT in Europe",
+            "keywords": [
+                "vat"
+            ],
+            "time": "2017-12-04T13:33:24+00:00"
+        },
         {
             "name": "doctrine/inflector",
             "version": "v1.3.0",
