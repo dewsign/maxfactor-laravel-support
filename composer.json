@@ -4,7 +4,9 @@
     "type": "library",
     "license": "MIT",
     "require": {
-        "laravel/framework": "^5.5"
+        "laravel/framework": "^5.5",
+        "symfony/intl": "^4.0",
+        "dannyvankooten/vat.php": "^1.1"
     },
     "autoload": {
         "psr-4": {
@@ -13,5 +15,16 @@
     },
     "require-dev": {
         "squizlabs/php_codesniffer": "^3.1"
+    },
+    "extra":{
+        "laravel": {
+            "providers": [
+                "Maxfactor\\Support\\MaxfactorServiceProvider"
+            ],
+            "aliases": {
+                "Maxfactor": "Maxfactor\\Support\\Facades\\Maxfactor",
+                "Format": "Maxfactor\\Support\\Facades\\Format"
+            }
+        }
     }
 }
