@@ -3,8 +3,15 @@
     "description": "Support and helpers for Laravel PHP based projects",
     "type": "library",
     "license": "MIT",
+    "authors": [
+        {
+            "name": "Marco Mark",
+            "email": "marco.mark@dewsign.co.uk",
+            "homepage": "https://dewsign.co.uk"
+        }
+    ],
     "require": {
-        "laravel/framework": "^5.5",
+        "laravel/framework": "^5.3",
         "symfony/intl": "^4.0",
         "dannyvankooten/vat.php": "^1.1"
     },
