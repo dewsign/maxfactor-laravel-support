@@ -1,6 +1,6 @@
 # Maxfactor Laravel Support
 
-[![npm](https://img.shields.io/npm/v/maxfactor-vue-cart.svg?style=for-the-badge)](https://www.npmjs.com/package/maxfactor-vue-cart)
+[![Packagist](https://img.shields.io/packagist/v/maxfactor/support.svg?style=for-the-badge)](https://packagist.org/packages/maxfactor/support)
 
 Authors:
 
