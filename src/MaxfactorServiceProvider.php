@@ -15,7 +15,7 @@ class MaxfactorServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        $this->bootViews();
     }
 
     /**
@@ -28,5 +28,19 @@ class MaxfactorServiceProvider extends ServiceProvider
         $this->app->bind('maxfactor', Maxfactor::class);
         $this->app->bind('mx-countries', Countries::class);
         $this->app->bind('mx-format', Format::class);
+    }
+
+    /**
+     * Load custom views
+     *
+     * @return void
+     */
+    private function bootViews()
+    {
+        $this->loadViewsFrom(__DIR__.'/Webpage/Views', 'maxfactor');
+
+        $this->publishes([
+            __DIR__.'/resources/views' => resource_path('views/vendor/maxfactor'),
+        ]);
     }
 }
