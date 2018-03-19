@@ -16,4 +16,27 @@ class Maxfactor
     {
         return Carbon::now()->format('Y');
     }
+
+    /**
+     * Generate a Breadcrumb navigation trail. Set time travel to false to disable
+     * forward navigation. Useful in Checkout for example.
+     *
+     * @param boolean $timetravel
+     * @return Array|Collection
+     */
+    public static function bake($seed = [], bool $timetravel = true)
+    {
+        $future = false;
+
+        $bread = collect($seed)->map(function ($crumb) use (&$future, $timetravel) {
+            $status = $future && !$timetravel ? 'disabled' : 'enabled';
+            $future = ($currentCrumb = (url()->current() === $crumb['url']) ? 'current' : '') || $future;
+
+            $crumb['status'] = $currentCrumb ? : $status;
+
+            return $crumb;
+        });
+
+        return $bread;
+    }
 }
