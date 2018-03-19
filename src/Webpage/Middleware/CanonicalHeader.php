@@ -21,7 +21,7 @@ class CanonicalHeader
             return $response;
         }
 
-        if (is_numeric($original)) {
+        if (!method_exists($original, 'getData')) {
             return $response;
         }
 
