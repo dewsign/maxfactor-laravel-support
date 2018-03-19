@@ -16,7 +16,12 @@ class CanonicalHeader
     public function handle($request, Closure $next)
     {
         $response = $next($request);
-        $responseData = collect($response->original->getData())->toArray();
+
+        if (!$original = $response->original) {
+            return $response;
+        }
+
+        $responseData = collect($original->getData())->toArray();
 
         $canonical = collect($responseData)->map(function ($item, $key) {
             return collect($item)->get('canonical') ?? null;
