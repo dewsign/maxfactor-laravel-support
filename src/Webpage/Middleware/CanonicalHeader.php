@@ -21,6 +21,10 @@ class CanonicalHeader
             return $response;
         }
 
+        if (is_numeric($original)) {
+            return $response;
+        }
+
         $responseData = collect($original->getData())->toArray();
 
         $canonical = collect($responseData)->map(function ($item, $key) {
