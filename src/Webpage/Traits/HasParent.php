@@ -90,10 +90,11 @@ trait HasParent
     }
 
     /**
-     * Lazy-load parent items
+     * Scope a query to eager load `parent`
+     * relationship to reduce database queries.
      *
-     * @param Builder $query
-     * @return Builder
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @return \Illuminate\Database\Eloquent\Builder
      */
     public function scopeWithParent(Builder $query)
     {
