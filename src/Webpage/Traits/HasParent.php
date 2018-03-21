@@ -101,6 +101,18 @@ trait HasParent
     }
 
     /**
+     * Scope a query to eager load `children`
+     * relationship to reduce database queries.
+     *
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeWithChildren(Builder $query)
+    {
+        return $query->with('children');
+    }
+
+    /**
      * Filter the model to only show items which match the full path
      *
      * @param Builder $query
