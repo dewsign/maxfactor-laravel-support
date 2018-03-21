@@ -33,6 +33,12 @@ trait HasParent
     }
 
     /**
+     * Impose requirements upon the exhibiting class.
+     */
+    abstract public function parent();
+    abstract public function children();
+
+    /**
      * Get full path.
      *
      * @return string Full path
