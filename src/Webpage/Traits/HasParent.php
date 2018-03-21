@@ -114,11 +114,11 @@ trait HasParent
     }
 
     /**
-     * Filter the model to only show items which match the full path
+     * Scope the query to only items that match the full path.
      *
-     * @param Builder $query
-     * @param string $path
-     * @return Builder
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @param string $path Full path
+     * @return \Illuminate\Database\Eloquent\Builder
      */
     public function scopeWhereFullPath(Builder $query, string $path)
     {
