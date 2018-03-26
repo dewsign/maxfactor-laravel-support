@@ -33,6 +33,12 @@ trait HasParent
     }
 
     /**
+     * Impose requirements upon the exhibiting class.
+     */
+    abstract public function parent();
+    abstract public function children();
+
+    /**
      * Get full path.
      *
      * @return string Full path
@@ -84,10 +90,11 @@ trait HasParent
     }
 
     /**
-     * Lazy-load parent items
+     * Scope a query to eager load `parent`
+     * relationship to reduce database queries.
      *
-     * @param Builder $query
-     * @return Builder
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @return \Illuminate\Database\Eloquent\Builder
      */
     public function scopeWithParent(Builder $query)
     {
@@ -95,11 +102,23 @@ trait HasParent
     }
 
     /**
-     * Filter the model to only show items which match the full path
+     * Scope a query to eager load `children`
+     * relationship to reduce database queries.
      *
-     * @param Builder $query
-     * @param string $path
-     * @return Builder
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeWithChildren(Builder $query)
+    {
+        return $query->with('children');
+    }
+
+    /**
+     * Scope the query to only items that match the full path.
+     *
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @param string $path Full path
+     * @return \Illuminate\Database\Eloquent\Builder
      */
     public function scopeWhereFullPath(Builder $query, string $path)
     {
