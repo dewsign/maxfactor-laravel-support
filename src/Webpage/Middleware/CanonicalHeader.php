@@ -17,6 +17,10 @@ class CanonicalHeader
     {
         $response = $next($request);
 
+        if (!property_exists($response, 'original')) {
+            return $response;
+        }
+
         if (!$original = $response->original) {
             return $response;
         }
