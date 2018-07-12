@@ -3,6 +3,7 @@
 namespace Maxfactor\Support;
 
 use Maxfactor\Support\Maxfactor;
+use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 use Maxfactor\Support\Location\Countries;
 
@@ -16,6 +17,7 @@ class MaxfactorServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->bootViews();
+        $this->bootCanonicalViewComposer();
     }
 
     /**
@@ -42,5 +44,23 @@ class MaxfactorServiceProvider extends ServiceProvider
         $this->publishes([
             __DIR__.'/resources/views' => resource_path('views/vendor/maxfactor'),
         ]);
+    }
+
+    /**
+     * Provides the maxfactor::components.canonical view with the canonical url from the view data
+     *
+     * @return void
+     */
+    private function bootCanonicalViewComposer()
+    {
+        View::composer('maxfactor::components.canonical', function ($view) {
+            $responseData = collect($view->getData())->toArray();
+
+            $canonical = collect($responseData)->map(function ($item, $key) {
+                return collect($item)->get('canonical') ?? null;
+            })->filter()->first();
+
+            View::share('canonicalLink', $canonical);
+        });
     }
 }
