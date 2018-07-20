@@ -13,7 +13,8 @@
     "require": {
         "laravel/framework": "^5",
         "symfony/intl": "^4.0",
-        "dannyvankooten/vat.php": "^1.1"
+        "dannyvankooten/vat.php": "^1.1",
+        "dereuromark/media-embed": "^0.4.1"
     },
     "autoload": {
         "psr-4": {
