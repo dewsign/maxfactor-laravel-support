@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Added
 
+- Video helper facade to generade embed codes from video URLs of popular video hosting services like YouTube & Vimeo.
 - Traits to assist with common functionality
 - - Meta Attributes
 - - Active state

@@ -3,6 +3,7 @@
 namespace Maxfactor\Support;
 
 use Maxfactor\Support\Maxfactor;
+use Maxfactor\Support\Video\Video;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 use Maxfactor\Support\Location\Countries;
@@ -30,6 +31,7 @@ class MaxfactorServiceProvider extends ServiceProvider
         $this->app->bind('maxfactor', Maxfactor::class);
         $this->app->bind('mx-countries', Countries::class);
         $this->app->bind('mx-format', Format::class);
+        $this->app->bind('mx-video', Video::class);
     }
 
     /**
