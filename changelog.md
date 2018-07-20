@@ -5,11 +5,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
-## [UNRELEASED]
+## [1.3.0] - 2018-07-20
 
 ### Added
 
-- Video helper facade to generade embed codes from video URLs of popular video hosting services like YouTube & Vimeo.
+- Video helper facade to generate embed codes from video URLs of popular video hosting services like YouTube & Vimeo.
 - Traits to assist with common functionality
 - - Meta Attributes
 - - Active state
