@@ -12,7 +12,7 @@ trait WithPrioritisation
      * Called by constructor
      * Load fillable fields
      */
-    public function bootWithPrioritisation()
+    public function initWithPrioritisation()
     {
         $this->fillable = array_merge($this->fillable, $this->withPrioritisationFields);
     }

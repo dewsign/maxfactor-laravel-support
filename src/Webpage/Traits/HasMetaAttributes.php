@@ -21,7 +21,7 @@ trait HasMetaAttributes
         'nav_title' => 'name',
     ];
 
-    public function bootHasMetaAttributes()
+    public function initHasMetaAttributes()
     {
         $this->casts = array_merge($this->casts, collect($this->hasMetaAttributesStorageFields)->map(function ($field) {
             return [$field => 'array'];

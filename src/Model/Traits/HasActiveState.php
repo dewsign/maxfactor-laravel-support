@@ -16,7 +16,7 @@ trait HasActiveState
      * Called by constructor
      * Load fillable and casts fields
      */
-    public function bootHasActiveState()
+    public function initHasActiveState()
     {
         $this->fillable = array_merge($this->fillable, $this->hasActiveStateFillableFields);
         $this->casts = array_merge($this->casts, $this->hasActiveStateCastFields);
