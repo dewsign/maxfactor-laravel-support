@@ -29,8 +29,12 @@ class Maxfactor
         $future = false;
 
         $bread = collect($seed)->map(function ($crumb) use (&$future, $timetravel) {
+            if (!$crumb) {
+                return;
+            }
+
             $status = $future && !$timetravel ? 'disabled' : 'enabled';
-            $future = ($currentCrumb = (url()->current() === $crumb['url']) ? 'current' : '') || $future;
+            $future = ($currentCrumb = (url()->current() === array_get($crumb, 'url')) ? 'current' : '') || $future;
 
             $crumb['status'] = $currentCrumb ? : $status;
 

@@ -6,6 +6,7 @@ use Maxfactor\Support\Maxfactor;
 use Maxfactor\Support\Video\Video;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Database\Schema\Blueprint;
 use Maxfactor\Support\Location\Countries;
 
 class MaxfactorServiceProvider extends ServiceProvider
@@ -19,6 +20,7 @@ class MaxfactorServiceProvider extends ServiceProvider
     {
         $this->bootViews();
         $this->bootCanonicalViewComposer();
+        $this->registerBlueprints();
     }
 
     /**
@@ -32,6 +34,8 @@ class MaxfactorServiceProvider extends ServiceProvider
         $this->app->bind('mx-countries', Countries::class);
         $this->app->bind('mx-format', Format::class);
         $this->app->bind('mx-video', Video::class);
+
+        $this->publishConfigs();
     }
 
     /**
@@ -57,12 +61,41 @@ class MaxfactorServiceProvider extends ServiceProvider
     {
         View::composer('maxfactor::components.canonical', function ($view) {
             $responseData = collect($view->getData())->toArray();
-
+            clock($responseData);
             $canonical = collect($responseData)->map(function ($item, $key) {
                 return collect($item)->get('canonical') ?? null;
             })->filter()->first();
 
             View::share('canonicalLink', $canonical);
         });
+    }
+
+    /**
+     * Register additional table blueprints for use in database migrations
+     *
+     * @return void
+     */
+    private function registerBlueprints()
+    {
+        Blueprint::macro('active', function ($name = 'active', $default = false) {
+            $this->boolean($name)->default($default);
+        });
+
+        Blueprint::macro('meta', function ($name = 'meta_attributes') {
+            $this->json($name)->nullable();
+        });
+
+        Blueprint::macro('priority', function ($name = 'priority', $default = 50) {
+            $this->int($name)->default($default);
+        });
+
+        Blueprint::macro('slug', function ($name = 'slug') {
+            $this->string($name)->unique()->index();
+        });
+    }
+
+    public function publishConfigs()
+    {
+        $this->mergeConfigFrom(__DIR__.'/Config/view-components.php', 'view-components');
     }
 }
