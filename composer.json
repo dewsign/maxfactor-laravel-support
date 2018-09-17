@@ -29,8 +29,7 @@
     "extra":{
         "laravel": {
             "providers": [
-                "Maxfactor\\Support\\MaxfactorServiceProvider",
-                "Maxfactor\\Support\\WebpageServiceProvider"
+                "Maxfactor\\Support\\MaxfactorServiceProvider"
             ],
             "aliases": {
                 "Maxfactor": "Maxfactor\\Support\\Facades\\Maxfactor",
