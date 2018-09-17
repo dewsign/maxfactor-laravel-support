@@ -18,7 +18,7 @@
                     <meta itemprop="position" content="{{ $loop->iteration }}" />
                 </li>
             @endif
-        @endforeach 
+        @endforeach
     </ul>
 </div>
 @endif

@@ -38,6 +38,6 @@ trait HasBreadcrumbs
 
     public function getBreadcrumbsAttribute()
     {
-        return $this->seed();
+        return $this->seed()->all();
     }
 }
