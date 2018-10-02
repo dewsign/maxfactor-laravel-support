@@ -58,19 +58,24 @@ Within your migrations you can simply use the slug helper to add the correct col
 
 ### Breadcrumbs
 
-Use the `Maxfactor\Support\Webpage\Traits\HasBreadcrumbs` trait (already included if you are using the Webpage Model) to include a `seed()` method. Push any breadcrumbs you require into the parent seed to add additional breadcrumbs.
+Use the `Maxfactor\Support\Webpage\Traits\HasBreadcrumbs` trait (already included if you are using the Webpage Model). Overload the `seeds()` method to return custom breadcrumbs and/or use the `seed()` method to push any breadcrumbs you require into the parent seed to add additional breadcrumbs.
 
 ```php
-public function seed()
+public function seeds()
 {
-    return parent::seed()->push([
+    return array_merge(parent::seeds(), [[
         'name' => __('Branch finder'),
         'url' => route('branch.index'),
-    ])->push([
-        'name' => $this->name,
+    ], [
+        'name' => $this->navTitle,
         'url' => route('branch.show', $this),
-    ]);
+    ]]);
 }
+```
+
+```php
+// Branch Controller
+$branch->seed($name = __('Audiologists'), $url = route('branch.audiologists', $branch), $status = null);
 ```
 
 Inside your blade view, render the breadcrumbs `@include('maxfactor::components.breadcrumb', ['seed' => $page->breadcrumbs])`. Replace the view with your own if required.
