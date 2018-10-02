@@ -61,7 +61,7 @@ class MaxfactorServiceProvider extends ServiceProvider
     {
         View::composer('maxfactor::components.canonical', function ($view) {
             $responseData = collect($view->getData())->toArray();
-            clock($responseData);
+
             $canonical = collect($responseData)->map(function ($item, $key) {
                 return collect($item)->get('canonical') ?? null;
             })->filter()->first();

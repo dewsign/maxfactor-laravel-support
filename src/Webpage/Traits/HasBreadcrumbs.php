@@ -4,6 +4,8 @@ namespace Maxfactor\Support\Webpage\Traits;
 
 trait HasBreadcrumbs
 {
+    public $crumbs;
+
     /**
      * The accessors to append to the model's array form.
      *
@@ -22,22 +24,47 @@ trait HasBreadcrumbs
     }
 
     /**
-     * Provides the breadcrumb for the front-end to render
+     * Overload this method to provide specific breadcrumb seeds. Merge with parent is required.
      *
-     * @return void
+     * @return array
      */
-    public function seed()
+    public function seeds()
     {
-        return collect([
-            [
-                'name' => 'Home',
-                'url' => '/'
-            ],
-        ]);
+        return [[
+            'name' => config('app.name'),
+            'url' => config('app.url'),
+        ]];
     }
 
+    /**
+     * Push additional breadcrumbs atop of those specified in the seeds() method
+     *
+     * @return self
+     */
+    public function seed($name = null, $url = null, $status = null)
+    {
+        if (!$this->crumbs) {
+            $this->crumbs = collect([]);
+        }
+
+        if ($name && $url) {
+            $this->crumbs->push([
+                'name' => $name,
+                'url' => $url,
+                'status' => $status,
+            ]);
+        }
+
+        return $this;
+    }
+
+    /**
+     * Return the merged breadcrumbs from the seeds() and any additional crumbs pushed in.
+     *
+     * @return array
+     */
     public function getBreadcrumbsAttribute()
     {
-        return $this->seed()->all();
+        return collect($this->seeds())->merge($this->crumbs)->all();
     }
 }
