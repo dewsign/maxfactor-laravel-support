@@ -78,19 +78,19 @@ class MaxfactorServiceProvider extends ServiceProvider
     private function registerBlueprints()
     {
         Blueprint::macro('active', function ($name = 'active', $default = false) {
-            $this->boolean($name)->default($default);
+            return $this->boolean($name)->default($default);
         });
 
         Blueprint::macro('meta', function ($name = 'meta_attributes') {
-            $this->json($name)->nullable();
+            return $this->json($name)->nullable();
         });
 
         Blueprint::macro('priority', function ($name = 'priority', $default = 50) {
-            $this->int($name)->default($default);
+            return $this->integer($name)->default($default);
         });
 
         Blueprint::macro('slug', function ($name = 'slug') {
-            $this->string($name)->unique()->index();
+            return $this->string($name)->unique()->index();
         });
     }
 
