@@ -82,7 +82,22 @@ Inside your blade view, render the breadcrumbs `@include('maxfactor::components.
 
 ### Canonicals
 
-Include the `MustHaveCanonical` trait which by default will return the current url but you typically would overload the `getCanonicalAttribute` to return the required canonical url for the model.
+Include the `MustHaveCanonical` trait which by default will return the current url but you typically would specify your own.
+
+This can be done on the Model ...
+
+```php
+public function baseCanonical()
+{
+    return route('branch.show', $this);
+}
+```
+
+Or inline (e.g. in the controller). This will take precedence over the `baseCanonical`.
+
+```php
+$branch->canonical($url);
+```
 
 Inside the head of your blade layout (or view) render the canonical meta field.
 
