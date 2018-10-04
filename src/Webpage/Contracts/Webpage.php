@@ -10,11 +10,4 @@ interface Webpage
      * @return Array
      */
     public function seed();
-
-    /**
-     * Ensure all Webpages have a canonical URL to avoid SEO problems
-     *
-     * @return string
-     */
-    public function getCanonicalAttribute();
 }

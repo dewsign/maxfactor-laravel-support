@@ -29,9 +29,4 @@ class Model extends EloquentModel implements Webpage
             }
         }
     }
-
-    public function getCanonicalAttribute()
-    {
-        return url()->current();
-    }
 }
