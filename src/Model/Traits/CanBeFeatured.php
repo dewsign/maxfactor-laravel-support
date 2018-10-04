@@ -16,7 +16,7 @@ trait CanBeFeatured
      * Called by constructor
      * Load fillable and casts fields
      */
-    public function initCanBeFeaturedState()
+    public function initCanBeFeatured()
     {
         $this->fillable = array_merge($this->fillable, $this->canBeFeaturedFillableFields);
         $this->casts = array_merge($this->casts, $this->canBeFeaturedCastFields);
