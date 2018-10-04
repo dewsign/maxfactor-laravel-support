@@ -30,14 +30,6 @@ class Model extends EloquentModel implements Webpage
         }
     }
 
-    public function seed()
-    {
-        return collect([[
-            'name' => config('app.name'),
-            'url' => config('app.url'),
-        ]]);
-    }
-
     public function getCanonicalAttribute()
     {
         return url()->current();
