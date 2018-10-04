@@ -41,6 +41,18 @@ use Maxfactor\Support\Model\Traits\CanBeFeatured;
 $table->featured();
 ```
 
+### Sorting Order
+
+Allow records to be ordered/sorted (sequentially).
+
+```php
+use Maxfactor\Support\Model\Traits\HasSortOrder;
+```
+
+```php
+$table->sorted();
+```
+
 ## Webpage
 
 A set of helpers and traits relating to public facing web pages.

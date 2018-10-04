@@ -85,6 +85,10 @@ class MaxfactorServiceProvider extends ServiceProvider
             return $this->boolean($name)->default($default);
         });
 
+        Blueprint::macro('sortable', function ($name = 'sort_order', $default = false) {
+            return $this->integer($name)->default(1);
+        });
+
         Blueprint::macro('meta', function ($name = 'meta_attributes') {
             return $this->json($name)->nullable();
         });
