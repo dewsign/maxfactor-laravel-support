@@ -43,14 +43,23 @@ $table->featured();
 
 ### Sorting Order
 
-Allow records to be ordered/sorted (sequentially).
+Allow records to be ordered/sorted (sequentially). Add the trait and sortable contract to your model.
 
 ```php
+use Spatie\EloquentSortable\Sortable;
 use Maxfactor\Support\Model\Traits\HasSortOrder;
+
+class Category extends Model implements Sortable
+{
+    use HasSortOrder;
+    ...
+}
 ```
 
+Migration helper ...
+
 ```php
-$table->sorted();
+$table->sortable();
 ```
 
 ## Webpage

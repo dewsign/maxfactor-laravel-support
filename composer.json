@@ -17,7 +17,7 @@
         "dereuromark/media-embed": "^0.4.1",
         "spatie/laravel-view-components": "^1.1",
         "laravelium/sitemap": "^2.0|^3.0",
-        "naxon/nova-field-sortable": "^1.0"
+        "dewsign/nova-field-sortable": "^0.1"
     },
     "autoload": {
         "psr-4": {
