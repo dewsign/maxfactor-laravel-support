@@ -2,6 +2,7 @@
 
 namespace Maxfactor\Support\Model\Traits;
 
+use Illuminate\Database\Eloquent\Builder;
 use Spatie\EloquentSortable\SortableTrait;
 
 trait HasSortOrder
@@ -33,8 +34,6 @@ trait HasSortOrder
 
     public static function bootHasSortOrder()
     {
-        parent::boot();
-
         static::addGlobalScope('sorted', function (Builder $builder) {
             if (!$orderBy = array_get((new static)->sortable, 'order_column_name')) {
                 return $builder;
