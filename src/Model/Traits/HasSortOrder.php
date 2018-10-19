@@ -30,4 +30,17 @@ trait HasSortOrder
         $this->fillable = array_merge($this->fillable, $this->hasSortOrderFillableFields);
         $this->casts = array_merge($this->casts, $this->hasSortOrderCastFields);
     }
+
+    public static function bootHasSortOrder()
+    {
+        parent::boot();
+
+        static::addGlobalScope('sorted', function (Builder $builder) {
+            if (!$orderBy = array_get((new static)->sortable, 'order_column_name')) {
+                return $builder;
+            }
+
+            return $builder->orderBy($orderBy, 'ASC');
+        });
+    }
 }
