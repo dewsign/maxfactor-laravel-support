@@ -13,6 +13,55 @@ Authors:
 
 A set of helper methods and classes commonly used in Web projects
 
+## Models
+
+More generic helpers which apply to more than just front-end facing web pages.
+
+### Active State
+
+Ensure records can be active or inactive (e.g. Draft like state). Add the trait to your model and the fields to your migration.
+
+```php
+use Maxfactor\Support\Model\Traits\HasActiveState;
+```
+
+```php
+$table->active();
+```
+
+### Featured State
+
+Allow records to be featured.
+
+```php
+use Maxfactor\Support\Model\Traits\CanBeFeatured;
+```
+
+```php
+$table->featured();
+```
+
+### Sorting Order
+
+Allow records to be ordered/sorted (sequentially). Add the trait and sortable contract to your model.
+
+```php
+use Spatie\EloquentSortable\Sortable;
+use Maxfactor\Support\Model\Traits\HasSortOrder;
+
+class Category extends Model implements Sortable
+{
+    use HasSortOrder;
+    ...
+}
+```
+
+Migration helper ...
+
+```php
+$table->sortable();
+```
+
 ## Webpage
 
 A set of helpers and traits relating to public facing web pages.
