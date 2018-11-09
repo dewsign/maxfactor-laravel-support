@@ -95,11 +95,11 @@ trait HasMetaAttributes
             return $this->getFinalValue($field, $default);
         }
 
-        if ($this->meta_attributes[$field] === null) {
+        if ($value = array_get($this->meta_attributes, '$field') === null) {
             return $this->getFinalValue($field, $default);
         }
 
-        return $this->meta_attributes[$field];
+        return $value;
     }
 
     private function getFinalValue($field, $default = null)
