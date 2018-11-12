@@ -178,3 +178,26 @@ class Sitemap extends MakeSitemap
     }
 }
 ```
+
+### Enforce Domain Names and SSL
+
+Search engines should only index content at a single URL, as such your website should only be served on it's primary domain. We provide a middleware to handle this as well as allowing for mutliple domains (if you are running domain specific routes).
+
+Add the `Maxfactor\Support\Webpage\Middleware\ForceDomain::class` to your web middleware group in the Kernel.
+
+By default it will use the Scheme (HTTP/HTTPS) and domain name form your `app.url` config value. You can specify additional domains in your `.env`.
+
+```env
+ALLOWED_DOMAINS="sub1.mydomain.com,sub2.mydomain.com"
+```
+
+Furthermore you can specifcy which response codes should be run through the domain validator in the `maxfactor-support` config.
+
+```php
+'enforceDomainsStatusCodes' => [
+    \Symfony\Component\HttpFoundation\Response::HTTP_OK,
+    \Symfony\Component\HttpFoundation\Response::HTTP_MOVED_PERMANENTLY,
+    \Symfony\Component\HttpFoundation\Response::HTTP_TEMPORARY_REDIRECT,
+    \Symfony\Component\HttpFoundation\Response::HTTP_PERMANENTLY_REDIRECT,
+],
+```
