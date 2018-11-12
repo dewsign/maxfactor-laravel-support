@@ -104,6 +104,11 @@ class MaxfactorServiceProvider extends ServiceProvider
 
     public function publishConfigs()
     {
+        $this->publishes([
+            __DIR__.'/Config/maxfactor-support.php' => config_path('maxfactor-support.php'),
+        ], 'config');
+
         $this->mergeConfigFrom(__DIR__.'/Config/view-components.php', 'view-components');
+        $this->mergeConfigFrom(__DIR__.'/Config/maxfactor-support.php', 'maxfactor-support');
     }
 }
