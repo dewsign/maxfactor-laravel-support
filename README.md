@@ -201,3 +201,34 @@ Furthermore you can specifcy which response codes should be run through the doma
     \Symfony\Component\HttpFoundation\Response::HTTP_PERMANENTLY_REDIRECT,
 ],
 ```
+
+### Password protection
+
+If you want to protected access to your application, or certain routes, on specific environments (e.g. staging) you can include the `Maxfactor\Support\Webpage\Middleware\EnvironmentAuth::class` middleware, either on entire groups or specific routes as required by naming the middleware in the Kernel.
+
+```php
+protected $routeMiddleware = [
+    ...
+    'auth.environment' => \Maxfactor\Support\Webpage\Middleware\EnvironmentAuth::class,
+];
+```
+
+This will require the visitor to login with a valid user account on environments specified in the `auth.php` config (Defaults to `staging`).
+
+```php
+    // config/auth.php
+
+    ...
+    /*
+    |--------------------------------------------------------------------------
+    | Environments
+    |--------------------------------------------------------------------------
+    |
+    | Determine which environments should be password protected.
+    |
+    */
+
+    'environments' => [
+        'staging',
+    ],
+```
