@@ -36,7 +36,6 @@ class MakeSitemap extends Command
         parent::__construct();
 
         $this->sitemap = $sitemap;
-        $this->sitemap->add(\URL::to('/'));
     }
 
     /**
