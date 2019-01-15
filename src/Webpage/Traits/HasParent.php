@@ -69,6 +69,20 @@ trait HasParent
     }
 
     /**
+     * Get root parent.
+     *
+     * @return self
+     */
+    public function getRootParentAttribute()
+    {
+        if (!$this->parent) {
+            return null;
+        }
+
+        return self::whereSlug($this->getRootSlug())->first();
+    }
+
+    /**
      * Add full path attribute.
      *
      * @return string Full path
