@@ -5,6 +5,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [2.2.0] – 2019-01-15
+
+### Added
+
+- rootParent attribute to return the top root page object. Can use useful when wanting to always list sub-navigation items from the root for aside etc.
+
 ## [2.1.0] – 2019-01-03
 
 ### Added
