@@ -34,7 +34,7 @@ class Maxfactor
             }
 
             $status = $future && !$timetravel ? 'disabled' : 'enabled';
-            $future = ($currentCrumb = (url()->current() === array_get($crumb, 'url')) ? 'current' : '') || $future;
+            $future = ($currentCrumb = (url()->all() === array_get($crumb, 'url')) ? 'current' : '') || $future;
 
             $crumb['status'] = $currentCrumb ? : $status;
 
