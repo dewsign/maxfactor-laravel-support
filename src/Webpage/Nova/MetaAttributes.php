@@ -6,7 +6,7 @@ use Laravel\Nova\Panel;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\Textarea;
 use ElevateDigital\CharcountedFields\TextCounted;
-use ElevateDigital\CharcountedFields\TextAreaCounted;
+use ElevateDigital\CharcountedFields\TextareaCounted;
 
 class MetaAttributes
 {
