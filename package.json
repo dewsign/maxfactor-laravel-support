@@ -1,6 +1,6 @@
 {
     "name": "maxfactor-laravel-support",
-    "version": "2.3.0",
+    "version": "2.3.1",
     "description": "Support and helpers for Laravel PHP based projects",
     "main": "index.js",
     "scripts": {
