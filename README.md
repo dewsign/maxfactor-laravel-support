@@ -154,6 +154,16 @@ Inside the head of your blade layout (or view) render the canonical meta field.
 @include('maxfactor::components.canonical')
 ```
 
+The Maxfactor facade also includes an additional helper method which can be used to deal with Querystring parameters in the canonical url. The `urlWithQuerystring` method accepts the desired url and a string or regular expression to filter which parameters to include in the output. The query values are taken from the current request query, even though the destination url doesn't have to match this. Here's an example of how this could be used to include pagination.
+
+```php
+// Assuming the current url is https://example.com/journal?page=2&tag=news
+
+Maxfactor::urlWithQuerystring('https://example.com/blog', $allowedParameters = 'page=[^1]');
+
+// returns https://example.com/blog?page=2
+```
+
 ### Sitemap
 
 To generate a sitemap simply create a new Command and Extend the `MakeSitemap` command in this package. Then add it to your console kernel and schedule as required. Here is the template to use as starting point.
