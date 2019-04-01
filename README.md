@@ -62,6 +62,12 @@ Migration helper ...
 $table->sortable();
 ```
 
+A query scope is included so you can access sorted results without manually defining the `orderBy`.
+
+```php
+$results = Model::scorted()->get();
+```
+
 ## Webpage
 
 A set of helpers and traits relating to public facing web pages.
