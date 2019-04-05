@@ -31,7 +31,7 @@ trait HasBreadcrumbs
     public function seeds()
     {
         return [[
-            'name' => config('maxfactor-support.defaultBreadcrumb', config('app.url')),
+            'name' => config('maxfactor-support.homeBreadcrumb', config('app.url')),
             'url' => config('app.url'),
         ]];
     }

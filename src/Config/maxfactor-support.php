@@ -8,5 +8,5 @@ return [
         \Symfony\Component\HttpFoundation\Response::HTTP_TEMPORARY_REDIRECT,
         \Symfony\Component\HttpFoundation\Response::HTTP_PERMANENTLY_REDIRECT,
     ],
-    'defaultBreadcrumb' => 'Home',
+    'homeBreadcrumb' => 'Home',
 ];
