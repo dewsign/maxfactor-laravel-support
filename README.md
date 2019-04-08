@@ -8,6 +8,7 @@ Authors:
 * [Jacob Walters](mailto:jacob.walters@dewsign.co.uk)
 * [Tristan Ward](mailto:tristan.ward@dewsign.co.uk)
 * [Sam Wrigley](mailto:sam.wrigley@dewsign.co.uk)
+* [Daniel Crewdson](mailto:daniel.crewdson@dewsign.co.uk)
 
 ## Overview
 
@@ -60,6 +61,12 @@ Migration helper ...
 
 ```php
 $table->sortable();
+```
+
+A query scope is included so you can access sorted results without manually defining the `orderBy`.
+
+```php
+$results = Model::sorted()->get();
 ```
 
 ## Webpage
@@ -128,6 +135,15 @@ $branch->seed($name = __('Audiologists'), $url = route('branch.audiologists', $b
 ```
 
 Inside your blade view, render the breadcrumbs `@include('maxfactor::components.breadcrumb', ['seed' => $page->breadcrumbs])`. Replace the view with your own if required.
+
+#### Setting a default 'Home' breadcrumb
+
+To change the default Home breadcrumb, you can set the `homeBreadcrumb` config value.
+
+```php
+// config/maxfactor-support.php
+'homeBreadcrumb' => 'Home',
+```
 
 ### Canonicals
 
