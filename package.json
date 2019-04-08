@@ -1,27 +1,27 @@
 {
-    "name": "maxfactor-laravel-support",
-    "version": "2.3.1",
-    "description": "Support and helpers for Laravel PHP based projects",
-    "main": "index.js",
-    "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1",
-        "precommit": "lint-staged"
-    },
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/dewsign/maxfactor-laravel-support.git"
-    },
-    "keywords": [],
-    "author": "",
-    "license": "ISC",
-    "bugs": {
-        "url": "https://github.com/dewsign/maxfactor-laravel-support/issues"
-    },
-    "homepage": "https://github.com/dewsign/maxfactor-laravel-support#readme",
-    "devDependencies": {
-        "husky": "^0.14.3",
-        "lint-staged": "^6.0.0",
-        "markdownlint-cli": "^0.5.0",
-        "jsonlint": "^1.6.0"
-    }
+  "name": "maxfactor-laravel-support",
+  "version": "2.4.0",
+  "description": "Support and helpers for Laravel PHP based projects",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "precommit": "lint-staged"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dewsign/maxfactor-laravel-support.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dewsign/maxfactor-laravel-support/issues"
+  },
+  "homepage": "https://github.com/dewsign/maxfactor-laravel-support#readme",
+  "devDependencies": {
+    "husky": "^0.14.3",
+    "lint-staged": "^6.0.0",
+    "markdownlint-cli": "^0.5.0",
+    "jsonlint": "^1.6.0"
+  }
 }
