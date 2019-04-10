@@ -10,9 +10,9 @@ use ElevateDigital\CharcountedFields\TextareaCounted;
 
 class MetaAttributes
 {
-    public static function make()
+    public static function make($additionalFields = [])
     {
-        return new Panel(__('Meta Attributes'), self::fields());
+        return new Panel(__('Meta Attributes'), array_merge(self::fields(), $additionalFields));
     }
 
     protected static function fields()

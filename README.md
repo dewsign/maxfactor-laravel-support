@@ -106,6 +106,23 @@ And this is a pre-made component to render the meta description
 @render('maxfactor:webpage::metaDescription', ['description' => array_get($page ?? [], 'metaDescription')])
 ```
 
+#### Additional Meta Fields in Nova
+
+You can pass in additional meta fields into the `MetaAttributes::make()` function, to display your own fields in the 'Meta Attributes' panel that this package creates.
+
+```php
+// Define our additional fields in the resource.
+protected function additionalMetaFields()
+{
+    return [
+        Text::make('Example Meta Content'),
+    ];
+}
+
+// Inside the resources fields() function we can pass in our additional fields as a parameter.
+MetaAttributes::make($this->additionalMetaFields()),
+```
+
 ### Slugs
 
 Add the `Maxfactor\Support\Webpage\Traits\HasSlug` trait to your model if you want the route helper to use the `slug` column in your database to identify records. (E.g. `/blog/article/foo` instead of `/blog/article/1`).
