@@ -16,7 +16,6 @@
         "dereuromark/media-embed": "^0.4.1",
         "spatie/laravel-view-components": "^1.1",
         "laravelium/sitemap": "^2.0|^3.0",
-        "elevate-digital/nova-charcounted-fields": "dev-master",
         "dannyvankooten/laravel-vat": "^2.0"
     },
     "autoload": {
