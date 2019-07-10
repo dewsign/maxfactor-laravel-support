@@ -3,22 +3,22 @@
 namespace Maxfactor\Support\Location;
 
 use Symfony\Component\Intl\Intl;
-use DvK\Vat\Countries as TaxRules;
 use Illuminate\Support\Collection;
+use DvK\Laravel\Vat\Facades\Countries as CountryHelper;
 
 class Countries
 {
     protected $defaultCountryCode = 'GB';
 
-    protected $taxRules;
+    protected $countryHelper;
 
     protected $countryCode;
     protected $countryTaxApplicable;
     protected $countryTaxOptional;
 
-    public function __construct(TaxRules $taxRules)
+    public function __construct(CountryHelper $countryHelper)
     {
-        $this->taxRules = $taxRules;
+        $this->countryHelper = $countryHelper;
     }
 
     public function list(): array
@@ -43,12 +43,12 @@ class Countries
 
     protected function isTaxOptional(string $code): bool
     {
-        return $this->taxRules->inEurope($code)
+        return $this->countryHelper->inEurope($code)
             && !collect(['GB', 'UK'])->contains($code);
     }
 
     protected function isTaxApplicable(string $code): bool
     {
-        return $this->taxRules->inEurope($code);
+        return $this->countryHelper->inEurope($code);
     }
 }
