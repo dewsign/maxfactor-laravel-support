@@ -3,8 +3,8 @@
 namespace Maxfactor\Support\Location;
 
 use Symfony\Component\Intl\Intl;
-use DvK\Laravel\Vat\Facades\Countries as CountryHelper;
 use Illuminate\Support\Collection;
+use DvK\Laravel\Vat\Facades\Countries as CountryHelper;
 
 class Countries
 {
