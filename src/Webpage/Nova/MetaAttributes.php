@@ -5,8 +5,6 @@ namespace Maxfactor\Support\Webpage\Nova;
 use Laravel\Nova\Panel;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\Textarea;
-use ElevateDigital\CharcountedFields\TextCounted;
-use ElevateDigital\CharcountedFields\TextareaCounted;
 
 class MetaAttributes
 {
@@ -19,14 +17,9 @@ class MetaAttributes
     {
         return [
             Text::make('H1')->hideFromIndex(),
-            TextCounted::make('Browser Title')
-                ->hideFromIndex()
-                ->maxChars(60)
-                ->warningAt(50),
+            Text::make('Browser Title')->hideFromIndex(),
             Text::make('Nav Title')->hideFromIndex(),
-            TextareaCounted::make('Meta Description')
-                ->maxChars(300)
-                ->warningAt(250),
+            Textarea::make('Meta Description')
         ];
     }
 }
