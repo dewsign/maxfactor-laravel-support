@@ -10,16 +10,9 @@ class Countries
 {
     protected $defaultCountryCode = 'GB';
 
-    protected $countryHelper;
-
     protected $countryCode;
     protected $countryTaxApplicable;
     protected $countryTaxOptional;
-
-    public function __construct(CountryHelper $countryHelper)
-    {
-        $this->countryHelper = $countryHelper;
-    }
 
     public function list(): array
     {
@@ -33,7 +26,7 @@ class Countries
         ]);
 
         if (!$location->has('countryCode')) {
-            $location->put('countryCode', $this->$defaultCountryCode);
+            $location->put('countryCode', $this->defaultCountryCode);
         }
 
         return $location
@@ -43,12 +36,12 @@ class Countries
 
     protected function isTaxOptional(string $code): bool
     {
-        return $this->countryHelper->inEurope($code)
+        return CountryHelper::inEurope($code)
             && !collect(['GB', 'UK'])->contains($code);
     }
 
     protected function isTaxApplicable(string $code): bool
     {
-        return $this->countryHelper->inEurope($code);
+        return CountryHelper::inEurope($code);
     }
 }
