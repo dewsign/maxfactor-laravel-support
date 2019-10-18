@@ -2,6 +2,8 @@
 
 namespace Maxfactor\Support\Webpage\Traits;
 
+use Illuminate\Support\Arr;
+
 trait HasMetaAttributes
 {
     private $hasMetaAttributesStorageFields = [
@@ -95,11 +97,11 @@ trait HasMetaAttributes
             return $this->getFinalValue($field, $default);
         }
 
-        if ($value = array_get($this->meta_attributes, $field) === null) {
+        if ($value = Arr::get($this->meta_attributes, $field) === null) {
             return $this->getFinalValue($field, $default);
         }
 
-        return array_get($this->meta_attributes, $field);
+        return Arr::get($this->meta_attributes, $field);
     }
 
     private function getFinalValue($field, $default = null)

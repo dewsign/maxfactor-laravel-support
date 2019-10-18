@@ -2,6 +2,8 @@
 
 namespace Maxfactor\Support\Webpage\Traits;
 
+use Illuminate\Support\Str;
+
 trait HasContent
 {
     protected $content;
@@ -92,7 +94,7 @@ trait HasContent
             ->filter(function ($item) use ($keys, $value, $exclude) {
                 return (bool)collect($keys)->filter(function ($key) use ($item, $value, $exclude) {
                     if (array_key_exists($key, $item)) {
-                        $itemContainsValue = str_contains(strtolower($item[$key]), strtolower($value));
+                        $itemContainsValue = Str::contains(strtolower($item[$key]), strtolower($value));
 
                         if ($exclude) {
                             return !$itemContainsValue;

@@ -97,13 +97,13 @@ $table->meta();
 Include this in your layout to render the browser title
 
 ```php
-@render('maxfactor:webpage::browserTitle', ['title' => array_get($page ?? [], 'browserTitle', config('app.name'))])
+@render('maxfactor:webpage::browserTitle', ['title' => Arr::get($page ?? [], 'browserTitle', config('app.name'))])
 ```
 
 And this is a pre-made component to render the meta description
 
 ```php
-@render('maxfactor:webpage::metaDescription', ['description' => array_get($page ?? [], 'metaDescription')])
+@render('maxfactor:webpage::metaDescription', ['description' => Arr::get($page ?? [], 'metaDescription')])
 ```
 
 #### Additional Meta Fields in Nova

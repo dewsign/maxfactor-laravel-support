@@ -3,6 +3,7 @@
 namespace Maxfactor\Support\Webpage\Middleware;
 
 use Closure;
+use Illuminate\Support\Arr;
 use Symfony\Component\HttpFoundation\Response;
 
 class ForceDomain
@@ -31,8 +32,8 @@ class ForceDomain
         $actualDomain = parse_url(url()->current());
 
         $appUrl = parse_url(config('app.url'));
-        $primaryDomain = array_get($appUrl, 'host');
-        $useSsl = array_get($appUrl, 'scheme', 'https') === 'https';
+        $primaryDomain = Arr::get($appUrl, 'host');
+        $useSsl = Arr::get($appUrl, 'scheme', 'https') === 'https';
 
         $allowedDomains = array_merge([$primaryDomain], config('maxfactor-support.allowedDomains', []));
 
