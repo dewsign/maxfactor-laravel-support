@@ -2,6 +2,8 @@
 
 namespace Maxfactor\Support;
 
+use Illuminate\Support\Arr;
+use Illuminate\Support\Str;
 use Illuminate\Support\Carbon;
 use Maxfactor\Support\Location\Facades\Countries;
 
@@ -34,7 +36,7 @@ class Maxfactor
             }
 
             $status = $future && !$timetravel ? 'disabled' : 'enabled';
-            $future = ($currentCrumb = (url()->full() === array_get($crumb, 'url')) ? 'current' : '') || $future;
+            $future = ($currentCrumb = (url()->full() === Arr::get($crumb, 'url')) ? 'current' : '') || $future;
 
             $crumb['status'] = $currentCrumb ? : $status;
 
@@ -58,8 +60,8 @@ class Maxfactor
             return $url;
         }
 
-        $allowedParameters = str_start($allowedParameters, '/');
-        $allowedParameters = str_finish($allowedParameters, '/');
+        $allowedParameters = Str::start($allowedParameters, '/');
+        $allowedParameters = Str::finish($allowedParameters, '/');
 
         $currentQuery = collect(request()->query())->filter(function ($value, $parameter) use ($allowedParameters) {
             return preg_match($allowedParameters, sprintf('%s=%s', $parameter, $value));

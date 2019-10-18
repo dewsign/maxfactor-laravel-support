@@ -2,6 +2,7 @@
 
 namespace Maxfactor\Support\Webpage\Traits;
 
+use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Builder;
 
 /**
@@ -50,10 +51,10 @@ trait HasParent
         }
 
         if (!$parent = $item->parent) {
-            return str_start($item->slug, '/');
+            return Str::start($item->slug, '/');
         }
 
-        return str_start(sprintf('%s%s', $this->getFullPath($parent), str_start($item->slug, '/')), '/');
+        return Str::start(sprintf('%s%s', $this->getFullPath($parent), Str::start($item->slug, '/')), '/');
     }
 
     /**
@@ -100,7 +101,7 @@ trait HasParent
             })
             ->implode('/');
 
-        return str_start($finalSlug, '/');
+        return Str::start($finalSlug, '/');
     }
 
     /**
@@ -141,7 +142,7 @@ trait HasParent
         return $query->where('slug', '=', end($itemSlugs))
             ->get()
             ->filter(function ($item) use ($path) {
-                return $item->full_path === str_start($path, '/');
+                return $item->full_path === Str::start($path, '/');
             });
     }
 }
