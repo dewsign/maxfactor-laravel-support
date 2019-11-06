@@ -23,7 +23,6 @@ trait HasActiveState
     {
         $this->fillable = array_merge($this->fillable, $this->hasActiveStateFillableFields);
         $this->casts = array_merge($this->casts, $this->hasActiveStateCastFields);
-        $this->registerViewInactiveMacro();
     }
 
     /**
@@ -47,18 +46,5 @@ trait HasActiveState
     public function scopeInactive($query)
     {
         return $query->where('active', '!=', 1);
-    }
-
-    /**
-     * Register the viewInactive View Macro to be called via a controller
-     *
-     * @return void
-     */
-    private function registerViewInactiveMacro()
-    {
-        View::macro('whenActive', function ($model) {
-            abort_if(Gate::denies('viewInactive', $model), 503);
-            return $this;
-        });
     }
 }

@@ -21,6 +21,7 @@ class MaxfactorServiceProvider extends ServiceProvider
         $this->bootViews();
         $this->bootCanonicalViewComposer();
         $this->registerBlueprints();
+        $this->registerViewInactiveMacro();
     }
 
     /**
@@ -110,5 +111,18 @@ class MaxfactorServiceProvider extends ServiceProvider
 
         $this->mergeConfigFrom(__DIR__.'/Config/view-components.php', 'view-components');
         $this->mergeConfigFrom(__DIR__.'/Config/maxfactor-support.php', 'maxfactor-support');
+    }
+
+    /**
+     * Register the viewInactive View Macro to be called via a controller
+     *
+     * @return void
+     */
+    private function registerViewInactiveMacro()
+    {
+        View::macro('whenActive', function ($model) {
+            abort_if(Gate::denies('viewInactive', $model), 503);
+            return $this;
+        });
     }
 }
