@@ -30,6 +30,24 @@ use Maxfactor\Support\Model\Traits\HasActiveState;
 $table->active();
 ```
 
+#### Prevent access to inactive models
+
+By default, the config option `canViewInactive` is set to `true`, so all requests to view content will be authorised. To prevent unauthorised access to content that isn't active, either register a global `viewInactive` gate in the service provider, or on a per-model basis via a Policy. If the Gate fails, the package will abort a `503` error.
+
+```php
+public function viewInactive($user, $model)
+{
+    if (config('maxfactor-support.canViewInactive')) {
+        return true;
+    }
+
+    // Your logic... (Gate::allows() etc)
+
+    return false;
+}
+```
+
+
 ### Featured State
 
 Allow records to be featured.
