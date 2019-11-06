@@ -9,4 +9,5 @@ return [
         \Symfony\Component\HttpFoundation\Response::HTTP_PERMANENTLY_REDIRECT,
     ],
     'homeBreadcrumb' => 'Home',
+    'canViewInactive' => true,
 ];
