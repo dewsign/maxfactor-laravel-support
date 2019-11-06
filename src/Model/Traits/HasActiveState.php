@@ -2,9 +2,6 @@
 
 namespace Maxfactor\Support\Model\Traits;
 
-use Illuminate\View\View;
-use Illuminate\Support\Facades\Gate;
-
 trait HasActiveState
 {
     private $hasActiveStateFillableFields = [

@@ -4,6 +4,7 @@ namespace Maxfactor\Support;
 
 use Maxfactor\Support\Maxfactor;
 use Maxfactor\Support\Video\Video;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Database\Schema\Blueprint;
