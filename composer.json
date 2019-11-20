@@ -16,7 +16,7 @@
         "dereuromark/media-embed": "^0.4.1",
         "spatie/laravel-view-components": "^1.1",
         "laravelium/sitemap": "^2.0|^3.0|^6.0",
-        "dannyvankooten/laravel-vat": "^2.0"
+        "dannyvankooten/laravel-vat": "dev-fix-semantic-versioning"
     },
     "autoload": {
         "psr-4": {
@@ -35,6 +35,12 @@
                 "Maxfactor": "Maxfactor\\Support\\Facades\\Maxfactor",
                 "Format": "Maxfactor\\Support\\Facades\\Format"
             }
+        }
+    },
+    "repositories": {
+        "laravel-vat": {
+            "type": "vcs",
+            "url": "git@github.com:m2de/laravel-vat.git"
         }
     }
 }
