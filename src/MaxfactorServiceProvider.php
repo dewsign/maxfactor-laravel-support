@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Database\Schema\Blueprint;
 use Maxfactor\Support\Location\Countries;
+use Maxfactor\Support\Macros\CollectionPaginate;
 
 class MaxfactorServiceProvider extends ServiceProvider
 {
@@ -23,6 +24,7 @@ class MaxfactorServiceProvider extends ServiceProvider
         $this->bootCanonicalViewComposer();
         $this->registerBlueprints();
         $this->registerViewInactiveMacro();
+        $this->bootMacros();
     }
 
     /**
@@ -38,6 +40,11 @@ class MaxfactorServiceProvider extends ServiceProvider
         $this->app->bind('mx-video', Video::class);
 
         $this->publishConfigs();
+    }
+
+    private function bootMacros()
+    {
+        return new CollectionPaginate;
     }
 
     /**
