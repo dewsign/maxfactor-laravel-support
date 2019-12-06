@@ -47,7 +47,6 @@ public function viewInactive($user, $model)
 }
 ```
 
-
 ### Featured State
 
 Allow records to be featured.
@@ -242,7 +241,7 @@ class Sitemap extends MakeSitemap
 
 ### Enforce Domain Names and SSL
 
-Search engines should only index content at a single URL, as such your website should only be served on it's primary domain. We provide a middleware to handle this as well as allowing for mutliple domains (if you are running domain specific routes).
+Search engines should only index content at a single URL, as such your website should only be served on it's primary domain. We provide a middleware to handle this as well as allowing for multiple domains (if you are running domain specific routes).
 
 Add the `Maxfactor\Support\Webpage\Middleware\ForceDomain::class` to your web middleware group in the Kernel.
 
@@ -252,7 +251,7 @@ By default it will use the Scheme (HTTP/HTTPS) and domain name form your `app.ur
 ALLOWED_DOMAINS="sub1.mydomain.com,sub2.mydomain.com"
 ```
 
-Furthermore you can specifcy which response codes should be run through the domain validator in the `maxfactor-support` config.
+Furthermore you can specify which response codes should be run through the domain validator in the `maxfactor-support` config.
 
 ```php
 'enforceDomainsStatusCodes' => [
@@ -292,4 +291,83 @@ This will require the visitor to login with a valid user account on environments
     'environments' => [
         'staging',
     ],
+```
+
+### Search functionality
+
+There are a number of useful tools here for implementing search functionality. Our recommended approach is to use [nicolaslopezj/searchable](https://github.com/nicolaslopezj/searchable) as it works straight on database queries without requiring any third party indexing systems. It is also very easy to customise and define rules to determine the most relevant search results. However, you should be able to use Scout or another search implementation. The only functionality imposed is that a `search` method exists on the model and ideally a `relevance` attribute is available on the model in order to sort mixed results.
+
+#### Making Models Searchable
+
+Aside from following the search providers instructions (e.g. [nicolaslopezj/searchable](https://github.com/nicolaslopezj/searchable)) or Scout, you need to implement a Contract and Trait to add the required functionality.
+
+```php
+// App\Page.php
+
+class Page extends Model implements Maxfactor\Support\Webpage\Contracts\SearchResult
+{
+    use Maxfactor\Support\Webpage\Traits\IsSearchResult;
+
+    // Implement the required methods which will be used to standardise search results output
+
+    public function getResultTitleAttribute()
+    {
+        return $this->nav_title;
+    }
+
+    public function getResultSubTitleAttribute()
+    {
+        return 'Page';
+    }
+
+    public function getResultSummaryAttribute()
+    {
+        return $this->summary;
+    }
+
+    public function getResultUrlAttribute()
+    {
+        return $this->mapped_url;
+    }
+
+    public function getResultImageAttribute()
+    {
+        return $this->image;
+    }
+}
+```
+
+#### Search Facade
+
+So in your `SearchController`, or where-ever you are performing the search, use the provided `Maxfactor\Support\Facades\Search` facade to return a Collection of results. This will be a combination of all results for any models included in the search. You may pass in any `Eloquent\Builder` instance or `Eloquent\Model`.
+
+```php
+$results = Search::for($query)->in([
+    Article::published(), // Builder
+    app(Page::class), // Model
+])->get();
+```
+
+Optionally you can paginate the result which uses the Laravel Paginator.
+
+```php
+$results = Search::for($query)->in([
+    Article::published(), // Builder
+    app(Page::class), // Model
+])->paginate(2);
+```
+
+#### Displaying results
+
+To display the results, loop over the returned Collection and display the results attributes.
+
+```html
+@foreach($results as $result)
+    <a href="{{ $result->result_url }}">
+        <img src="{{ $result->result_image }}" alt="{{ $result->result_title }}">
+        <h2>{{ $result->result_title }}</h2>
+        <h3>{{ $result->result_sub_title }}</h3>
+        <p>{{ $result->result_summary }}</p>
+    </a>
+@endforeach
 ```

@@ -6,9 +6,11 @@ use Maxfactor\Support\Maxfactor;
 use Maxfactor\Support\Video\Video;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\View;
+use Maxfactor\Support\Webpage\Search;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Database\Schema\Blueprint;
 use Maxfactor\Support\Location\Countries;
+use Maxfactor\Support\Macros\CollectionPaginate;
 
 class MaxfactorServiceProvider extends ServiceProvider
 {
@@ -23,6 +25,7 @@ class MaxfactorServiceProvider extends ServiceProvider
         $this->bootCanonicalViewComposer();
         $this->registerBlueprints();
         $this->registerViewInactiveMacro();
+        $this->bootMacros();
     }
 
     /**
@@ -36,8 +39,14 @@ class MaxfactorServiceProvider extends ServiceProvider
         $this->app->bind('mx-countries', Countries::class);
         $this->app->bind('mx-format', Format::class);
         $this->app->bind('mx-video', Video::class);
+        $this->app->bind('mx-search', Search::class);
 
         $this->publishConfigs();
+    }
+
+    private function bootMacros()
+    {
+        return new CollectionPaginate;
     }
 
     /**
