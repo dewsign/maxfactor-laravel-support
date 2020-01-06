@@ -2,6 +2,8 @@
 
 namespace Maxfactor\Support\Webpage\Traits;
 
+use Illuminate\Support\Arr;
+
 trait IsWebpage
 {
     protected $template = 'default';
@@ -59,6 +61,6 @@ trait IsWebpage
      */
     public function items()
     {
-        return $this->content['items'];
+        return Arr::get($this->content, 'items', []);
     }
 }
