@@ -64,7 +64,9 @@ class Maxfactor
         $allowedParameters = Str::finish($allowedParameters, '/');
 
         $currentQuery = collect(request()->query())->filter(function ($value, $parameter) use ($allowedParameters) {
-            return preg_match($allowedParameters, sprintf('%s=%s', $parameter, $value));
+            return collect(\Arr::wrap($value))->filter(function ($value) use ($parameter, $allowedParameters) {
+                return preg_match($allowedParameters, sprintf('%s=%s', $parameter, $value));
+            })->count();
         });
 
         if (!$newQuery = http_build_query($currentQuery->all())) {
