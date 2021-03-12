@@ -41,7 +41,7 @@ class Maxfactor
             $crumb['status'] = $currentCrumb ? : $status;
 
             return $crumb;
-        });
+        })->filter();
 
         return $bread;
     }
